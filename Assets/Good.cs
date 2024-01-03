@@ -3,11 +3,9 @@ using UnityEngine;
 public class Good : MonoBehaviour
 {
     public string Name { get; private set; }
-    public int Cost { get; private set; }
 
-    public Good(string name, int cost)
+    public Good(string name)
     {
         Name = name;
-        Cost = cost;
     }
 }

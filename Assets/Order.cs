@@ -3,31 +3,24 @@ using UnityEngine;
 
 public class Order : MonoBehaviour
 {
-    private List<Good> _goods = new List<Good>();
+    private Dictionary<Good, int> _goods = new Dictionary<Good, int>();
     public string Paylink { get; private set; }
 
     public Order()
     {
-        int paylink = 0;
-
-        foreach (var good in _goods)
-        {
-            paylink += good.Cost;
-        }
-
-        Paylink = paylink.ToString();
+        Paylink = "Заказ сделан";
     }
 
-    public void AddGoods(List<Good> goods)
+    public void AddGoods(Good good, int count)
     {
-        _goods.AddRange(goods);
+        _goods.Add(good, count);
     }
 
     public void ShowGoods()
     {
         foreach (var good in _goods)
         {
-            System.Console.WriteLine(good.Name);
+            System.Console.WriteLine(good);
         }
     }
 }

@@ -4,8 +4,8 @@ public class InternetShop : MonoBehaviour
 {
     private void Start()
     {
-        Good iPhone12 = new Good("IPhone 12", 200);
-        Good iPhone11 = new Good("IPhone 11", 150);
+        Good iPhone12 = new Good("IPhone 12");
+        Good iPhone11 = new Good("IPhone 11");
 
         Warehouse warehouse = new Warehouse();
 

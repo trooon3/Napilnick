@@ -4,39 +4,32 @@ using UnityEngine;
 
 public class Warehouse : MonoBehaviour
 {
-    public List<Good> Goods = new List<Good>();
+    private Dictionary<Good, int> _goods = new Dictionary<Good, int>();
+
+    public Dictionary<Good, int> Goods => _goods;
 
     public void Delive(Good good, int count)
     {
-        for (int i = 0; i < count; i++)
+        if (_goods.ContainsKey(good))
         {
-            Goods.Add(good);
+            _goods[good] += count;
+        }
+        else
+        {
+            _goods.Add(good, count);
         }
     }
 
-    public void Sort()
+    public void Unload(Good good, int count)
     {
-        Goods.OrderBy(good => good.Name);
+        _goods[good] -= count;
     }
 
     public void ShowGoods()
     {
-        Sort();
-        int Iphones11Count = 0;
-        int Iphones12Count = 0;
-
-        foreach (var good in Goods)
+        foreach (var good in _goods)
         {
-            if (good.Name == "IPhone 11")
-            {
-                Iphones11Count++;
-            }
-            if (good.Name == "IPhone 11")
-            {
-                Iphones12Count++;
-            }
+            System.Console.WriteLine(good.Key + " " + good.Value);
         }
-        System.Console.WriteLine("IPhone 11" + Iphones11Count);
-        System.Console.WriteLine("IPhone 12" + Iphones12Count);
     }
 }

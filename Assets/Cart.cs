@@ -10,25 +10,19 @@ public class Cart : MonoBehaviour
     
     public void Add(Good good, int count)
     {
-        var orderTest = new List<Good>();
-        int goodsNeedCount = 0;
-        _warehouse.Sort();
-
         for (int i = 0; i < count; i++)
         {
-            if (good.Name == _warehouse.Goods[i].Name)
+            if (_warehouse.Goods.ContainsKey(good) && _warehouse.Goods[good] >= count)
             {
-                goodsNeedCount++;
+                _warehouse.Unload(good, count);
             }
             else
             {
                 throw new ArgumentOutOfRangeException();
             }
-
-            orderTest.AddRange(_warehouse.Goods.Take(goodsNeedCount));
         }
 
-        _order.AddGoods(orderTest);
+        _order.AddGoods(good, count);
     }
 
     public void ShowOrder()
